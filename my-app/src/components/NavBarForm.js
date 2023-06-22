@@ -12,17 +12,27 @@ export class NavBarForm extends Component {
     }
 
     handleClick = () => {
-        this.setState((prevState)=>{
-            console.log('prevState:', prevState);
+      this.setState((prevState) => ({
+          isLoggedIn: !prevState.isLoggedIn,
+      }));
+      console.log(this.state)
+  };
 
-        })
 
-    }
+    
   render() {
     return (
       <div className={css.NavBar}>
         <h1>My Gallery</h1>
-        <button onClick={this.handleClick}>Log in</button>
+        {this.state.isLoggedIn ? (
+          <div>
+            <button onClick={this.handleClick}>Log in</button>
+          </div>
+        ) : (
+            <form>
+              <button onClick={this.handleClick}>Submit</button>
+            </form>
+        )}
       </div>
     )
   }
